@@ -2,29 +2,40 @@ import random
 
 answer = random.randint(1,10)
 
+def another_try():
+    result = ''
+    while True:
+        try_again = input('Would you like to give another shot? (Y/N)')
+        if try_again.upper() == 'N':
+            print('See you next time!')
+            result = 'Stop!'
+            break
+        elif try_again.upper() == 'Y':
+            result = 'Try Again!'
+            break
+        else:
+            print('Please, type (Y/N)!')
+            continue
+
+    return result
+
+
 while True:
     try:
         guess = int(input('Pick a number from 1 to 10: '))
         print(answer)
-        if 1 <= guess <= 10:
-            if answer == guess:
-                print('Bingo')
+        if 1 > guess > 10:
+            print('Please, you must choose a number between 1 and 10! ')
+            continue
+        if answer == guess:
+            print('Bingo')
+            break
+        else:
+            print('Wrong Pick!')
+            if another_try() == 'Stop!':
                 break
             else:
-                print('Wrong Pick!')
-                try_again = input('Would you like to try again? ')
-                if try_again.upper() == 'N':
-                    print('Até a próxima!')
-                    break
-                elif try_again.upper() == 'Y':
-                    continue
-                # else:
-                #     print('Please, type Yes or No (Y/N)!')
-                #     continue
-        else:
-            print('Eu disse de 1 a 10! ')
+                continue
     except ValueError:
         print('Please, enter a number!')
         continue
-    except try_again.upper() != 'Y' and try_again.upper() != 'N':
-        print('Please, type Yes or No (Y/N)!')
